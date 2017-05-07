@@ -1,4 +1,10 @@
-date=$(date +%d/%b/%Y)
+param=$1
+if [ "${param}" = "" ]; then
+    date=$(date +%d/%b/%Y)
+elif [ "${param}" != "" ]; then
+    date=$(date +%d/%b/%Y -d "${param} days")
+fi
+
 tmp_log=web_log_analysis_tmp.log
 cd /home/wwwlogs && cat yunshare.net.log | awk -F ' ' '{print $4,$9,$14}' > ${tmp_log}
 echo "百度蜘蛛访问次数："
